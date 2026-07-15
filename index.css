@@ -1181,6 +1181,25 @@ strong {
     }
 }
 
+/* --- Series Sections --- */
+.series-section-header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid var(--accent-signal);
+    padding-left: 1rem;
+}
+
+.series-section-header h3 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.series-section-header .series-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
 /* --- Animations --- */
 .fade-in {
     opacity: 0;

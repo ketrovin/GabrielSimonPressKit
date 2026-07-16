@@ -167,21 +167,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 7. Intersection Observer for Scroll Effects ---
     const fadeElements = document.querySelectorAll(".fade-in");
     
-    const fadeObserverOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // Only trigger once
-            }
+    if ('IntersectionObserver' in window) {
+        const fadeObserverOptions = {
+            threshold: 0.01, // Trigger as soon as 1% is visible (robust for tall sections)
+            rootMargin: "0px 0px -50px 0px"
+        };
+    
+        const fadeObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target); // Only trigger once
+                }
+            });
+        }, fadeObserverOptions);
+    
+        fadeElements.forEach(el => {
+            el.classList.add("fade-in-active"); // Enable JS fade-in animation
+            fadeObserver.observe(el);
         });
-    }, fadeObserverOptions);
-
-    fadeElements.forEach(el => fadeObserver.observe(el));
+    }
 
     // --- 8. Nav Link Active State Highlighting ---
     const sections = document.querySelectorAll("section[id]");

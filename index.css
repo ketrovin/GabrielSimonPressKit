@@ -1202,12 +1202,17 @@ strong {
 
 /* --- Animations --- */
 .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: none;
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.fade-in.visible {
+.fade-in.fade-in-active {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-in.fade-in-active.visible {
     opacity: 1;
     transform: translateY(0);
 }
